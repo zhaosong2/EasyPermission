@@ -4,24 +4,28 @@
 ## 一、简单使用  
 
 ### 1）创建权限管理对象,一个Activity一个mPermissionUtil
-
- ```private PermissionUtil mPermissionUtil;   
+```
+private PermissionUtil mPermissionUtil;   
 //建议在onCreate里初始化   
- mPermissionUtil = new PermissionUtil(this);```
+ mPermissionUtil = new PermissionUtil(this);
+ ```
 
 ### 2）在需要用到权限的所在Activity申请所需权限,会先弹出对话框告诉用户需要开启哪些权限，让用户确认,然后调用系统权限管理逐个询问
 
- ```mPermissionUtil.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},  
+```
+ mPermissionUtil.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},  
  new GenericPermissionCallBack() {
                     @Override
                     public void onPermissionsSuccess(Activity activity) {
                         //do something
                     }
-                });```
+                });
+```
                 
 ### 3) 系统回调处理 
 
- ```@Override
+ ```
+ @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //处理用户权限处理的结果,如果全部权限通过,会走onSuccess;如果部分权限没给,会走到步骤2)；如果有权限没给并且勾选了不再提示，将弹出一个对话框，要么直接退出，要么跳转到系统权限管理界面去手动开启权限
@@ -32,7 +36,8 @@
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
       //拒绝授权后跳转到授权页面后未开启权限的处理 
       mPermissionUtil.onActivityResult(requestCode);
-    }```
+    }
+ ```
     
 ## 二、项目说明
 
