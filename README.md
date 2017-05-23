@@ -25,7 +25,7 @@ private PermissionUtil mPermissionUtil;
 ### 3) 系统回调处理 
 
  ```
- @Override
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //处理用户权限处理的结果,如果全部权限通过,会走onSuccess;如果部分权限没给,会走到步骤2)；如果有权限没给并且勾选了不再提示，将弹出一个对话框，要么直接退出，要么跳转到系统权限管理界面去手动开启权限
